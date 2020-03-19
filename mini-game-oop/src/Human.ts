@@ -9,12 +9,6 @@ class Human extends Char{
         super(name, life, power)
 
     }
-
-    getAtack(): number{
-        let attack: number = Math.floor(Math.random() * Math.floor(this.power));
-        return attack
-
-    }
  
 
 }

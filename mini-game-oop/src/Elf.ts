@@ -9,3 +9,5 @@ class Elf extends Char {
     }
 
 }
+
+export default Elf
