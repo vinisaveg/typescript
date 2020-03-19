@@ -1,0 +1,17 @@
+{
+  "name": "mini-game-oop",
+  "version": "1.0.0",
+  "description": "estudando oop com typescript",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js --watch"
+  },
+  "author": "VSG",
+  "license": "ISC",
+  "dependencies": {
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
