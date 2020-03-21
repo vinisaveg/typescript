@@ -12,86 +12,46 @@ class Battle {
 
     startBattle(){
         this.battle()
+
+    }
+
+    battle(): void{
+        let headsOrTails = this.tossCoin()
+
+        if(headsOrTails){
+            this.fight(this.player1, this.player2)
+
+        }else{
+            this.fight(this.player2, this.player1)
+
+        }
+
         this.checkWinner()
 
     }
 
-    // Refatorar esse código porco
-    battle(): void{
-        if(this.tossCoin()){
-
-            while(this.player1.isAlive() && this.player2.isAlive()){
-
-                if(this.player1.getLife() > 0){
-                    this.player1.alive = true
-                    let player1Damage = this.player1.getAtack()
-                    this.player2.takeDamage(player1Damage)
-    
-                    console.log(`${this.player1.getName()} hit with ${player1Damage}.`)
-                    console.log(`${this.player2.getName()} total life: ${this.player2.getLife()}.`)
-
-                }else{
-                    this.player1.alive = false
-                    console.log(`${this.player1.getName()} is dead.`)
-                    break
-
-                }
-
-                if(this.player2.getLife() > 0){
-                    this.player2.alive = true
-                    let player2Damage = this.player2.getAtack()
-                    this.player1.takeDamage(player2Damage)
-    
-                    console.log(`${this.player2.getName()} hit with ${player2Damage}.`)
-                    console.log(`${this.player1.getName()}  total life: ${this.player1.getLife()}.`)
-
-                }else{
-                    this.player2.alive = false
-                    console.log(`${this.player2.getName()} is dead.`)
-                    break
-                }
-
-
-            }
-
-        }else{
-            while(this.player1.isAlive() && this.player2.isAlive()){
-
-                if(this.player2.getLife() > 0){
-                    this.player2.alive = true
-                    let player2Damage = this.player2.getAtack()
-                    this.player1.takeDamage(player2Damage)
-    
-                    console.log(`${this.player2.getName()} hit with ${player2Damage}.`)
-                    console.log(`${this.player1.getName()}  total life: ${this.player1.getLife()}.`)
-
-                }else{
-                    this.player2.alive = false
-                    console.log(`${this.player2.getName()} is dead.`)
-                    break
-                }
-
-
-                if(this.player1.getLife() > 0){
-                    this.player1.alive = true
-                    let player1Damage = this.player1.getAtack()
-                    this.player2.takeDamage(player1Damage)
-    
-                    console.log(`${this.player1.getName()} hit with ${player1Damage}.`)
-                    console.log(`${this.player2.getName()} total life: ${this.player2.getLife()}.`)
-
-                }else{
-                    this.player1.alive = false
-                    console.log(`${this.player1.getName()} is dead.`)
-                    break
-
-                }
-
-
-            }
+    fight(firstPlayer: Char, secondPlayer: Char): void{
+        while(firstPlayer.isAlive() && secondPlayer.isAlive()){
+            this.fightAtacks(firstPlayer, secondPlayer)
+            this.fightAtacks(secondPlayer, firstPlayer)     
 
         }
+    }
 
+    fightAtacks(attackingPlayer: Char, defendingPlayer: Char){
+        if(attackingPlayer.getLife() > 0 && defendingPlayer.getLife() > 0){
+            attackingPlayer.alive = true
+            let attakingPlayerDamage = attackingPlayer.getAtack()
+            defendingPlayer.takeDamage(attakingPlayerDamage)
+
+            console.log(`${attackingPlayer.getName()} hit with ${attakingPlayerDamage}.`)
+            console.log(`${defendingPlayer.getName()} total life: ${defendingPlayer.getLife()}.`)
+
+        }else{
+            attackingPlayer.alive = false
+            console.log(`${attackingPlayer.getName()} is dead.`)
+
+        }
     }
 
     tossCoin(): boolean{
